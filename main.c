@@ -1,30 +1,36 @@
 #include <stdio.h>
-#include <curl/curl.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main(void) {
-	CURL *curl;
-	CURLcode res;
-	
-	// Inicializar la biblioteca libcurl
-	curl = curl_easy_init();
-	if (curl) {
-		// Establecer la URL de la API
-		curl_easy_setopt(curl, CURLOPT_URL, "https://jsonplaceholder.typicode.com/todos/1");
-		
-		// Realizar la solicitud HTTP GET
-		res = curl_easy_perform(curl);
-		
-		// Verificar si la solicitud se realizó con éxito
-		if (res != CURLE_OK) {
-			fprintf(stderr, "Error en la solicitud: %s\n", curl_easy_strerror(res));
-		} else {
-			// Aquí puedes procesar la respuesta de la API
-		}
-		
-		// Finalizar la sesión de libcurl
-		curl_easy_cleanup(curl);
-	}
-	
+// precio se expresa en centavos para evitar errores al hacer operaciones con tipo float
+struct Producto
+{
+	char *nombre;
+	char *categoria;
+	int *cantidad;
+	int *precio;
+};
+// void modificarProducto(struct Producto *p)
+// {
+// 	// Modificar la estructura a travÃ©s del puntero
+// 	strcpy(p->nombre, "Queso");
+// 	p->precio = 120;
+// }
+
+// void imprimirProducto(struct Producto p)
+// {
+// 	printf("Nombre: %s\n", p.nombre);
+// }
+
+int main(void)
+{
+	struct Producto producto1;
+	struct Producto producto2;
+	producto1.nombre = "Queso";
+	producto2.nombre = "Huevo";
+
+	printf(producto1.nombre, "\n");
+	printf(producto2.nombre, "\n");
+	system("pause");
 	return 0;
 }
-
